@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{% block body %}
+
+  <form method="POST">
+
+    {% csrf_token %} 
+    {% bootstrap_form com_form %}
+    {% buttons %}
+        <button type="submit" class="btn btn-primary">Editer commande</button>
+    {% endbuttons %}
+
+
+
+  </form>
+  
+{% endblock %} 
+
+   {% comment %} <div class="form-group">
+      <label for="id_emballé">kkkkkkkk</label>
+      
+      {{com_form.emballé}}
+
+    </div>  {% endcomment %}

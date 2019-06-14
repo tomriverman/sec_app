@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+  <div class="add_buttons">
+
+    <div class="button-group">
+      <a href="{% url 'inv_man:display_product' %}" class="btn btn-primary btn-md btn-trim" role="button"> Products</a>
+      <a href="{% url 'inv_man:add_product' %}" class="btn btn-warning btn-md btn-pad" role="button"> +</a>
+
+      <a href="{% url 'inv_man:display_order' %}" class="btn btn-primary btn-md btn-trim" role="button"> Orders </a>
+      <a href="{% url 'inv_man:add_order' %}" class="btn btn-warning btn-md btn-pad" role="button"> + </a>
+
+      <a href="#" class="btn btn-primary btn-md btn-trim" role="button"> Staff</a>
+      <a href="#" class="btn btn-warning btn-md btn-pad" role="button"> +</a>
+
+    </div>
+
+  </div>
+
+  {% comment %} <div>
+
+    <h4>Currently Viewing {{ header }}</h4>
+  </div>
+
+
+  <table class="table table-hover table-sm table-striped table-bordered">
+    <thead>
+              <tr>
+                <th>id</th>
+                <th>titre</th>
+                <th>category</th>
+                <th>taille</th>
+                <th>code</th>
+                <th>prix</th>
+                <th>quantité</th>
+                <th>vendeur</th>
+                <th>date</th>
+                <th></th>
+              </tr>
+            </thead>
+
+    <tbody>
+
+      {% for produit in display_produits %}
+
+      <tr>
+            <td>{{ produit.id }}</td>
+            <td><a href="{% url 'inv_man:edit_produit' produit.id %}">{{ produit.titre }}</a></td>
+            <td>{{ produit.category }}</td>
+            <td>{{ produit.taille }}</td>
+            <td>{{ produit.code }}</td>
+            <td>{{ produit.prix }} $</td>
+            <td>{{ produit.quantité }}</td>
+            <td>{{ produit.vendeur }}</td>
+            <td>{{ produit.date }}</td>
+          </tr>
+      {% endfor %}
+    </tbody>
+  </table> {% endcomment %}
+{% endblock %}

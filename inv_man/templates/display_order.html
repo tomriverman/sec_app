@@ -1,0 +1,115 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{% block body %}
+
+  <div class="add_buttons">
+
+    <div class="button-group">
+      <a href="{% url 'inv_man:display_product' %}" class="btn btn-primary btn-md btn-trim" role="button"> Products</a>
+      <a href="{% url 'inv_man:add_product' %}" class="btn btn-warning btn-md btn-pad" role="button"> +</a>
+
+      <a href="{% url 'inv_man:display_order' %}" class="btn btn-primary btn-md btn-trim" role="button"> Orders </a>
+      <a href="{% url 'inv_man:add_order' %}" class="btn btn-warning btn-md btn-pad" role="button"> + </a>
+
+      <a href="#" class="btn btn-primary btn-md btn-trim" role="button"> Staff</a>
+      <a href="#" class="btn btn-warning btn-md btn-pad" role="button"> +</a>
+
+    </div>
+
+  </div>
+
+  <table class="table table-hover table-sm table-striped table-bordered">
+    <thead>
+      <tr>
+        <th>store_name</th>
+        <th>order_date</th>
+        <th>order_number</th>
+        <th>sku</th>
+        <th>product</th>
+        <th>client_name</th>
+        <th>phone</th>
+        <th>address</th>
+        <th>city</th>
+        <th>price</th>
+        <th>packed</th>
+        <th>confirmed</th>
+        <th>sent</th>
+        <th>delivered</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      {% for order in display_order %}
+
+      <tr>
+        <td>{{ order.store_name }}
+        <td><a href="{% url 'inv_man:edit_order' order.id  %}">{{ order.order_date }}</a></td>
+        <td>{{ order.order_number }}</td>
+        <td>{{ order.sku }}</td>
+        <td>{{ order.product }}</td>
+        <td>{{ order.client_name }}</td>
+        <td>{{ order.phone }}</td>
+        <td>{{ order.address }}</td>
+        <td>{{ order.city }}</td>
+        <td>{{ order.price }}</td>
+        <td>{{ order.packed }}</td>
+        <td>{{ order.confirmed }}</td>
+        <td>{{ order.sent }}</td>
+        <td>{{ order.delivered }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}
+
+{% comment %}
+          <form method="POST">
+          {% csrf_token %}
+          {% if order.emballé  == True %}
+            <div class="form-check">
+              <label>
+                <input type="checkbox" name="check" checked> <span class="label-text"></span>
+              </label>
+            </div>
+           {% else %}
+              <div class="form-check">
+                <label>
+                  <input type="checkbox" name="check"> <span class="label-text" </span>
+                </label>
+              </div>
+
+        <div class="form-group">
+
+
+
+          <button type="submit" class="btn btn-primary">Editer</button>
+
+
+        </div>
+          <form method="POST">
+          {% csrf_token %}
+          {% if order.emballé  == True %}
+            <div class="form-check">
+              <label>
+                <input type="checkbox" name="check" checked> <span class="label-text"></span>
+              </label>
+            </div>
+
+            <div class="form-group">
+              <button type="submit" class="btn btn-primary">Ajouter produit</button>
+            </div>
+           {% else %}
+              <div class="form-check">
+                <label>
+                  <input type="checkbox" name="check"> <span class="label-text background-color: #45a049"></span>
+                </label>
+              </div>
+
+              <div class="form-group">
+                <button type="submit" class="btn btn-primary">Ajouter produit</button>
+              </div>
+
+              <label class="col-md-5" for="emballé"> emballé: </label>
+              <input id="emballé" type="checkbox" name="emballé">
+
+          {% endif %} {% endcomment %}

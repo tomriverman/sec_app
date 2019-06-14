@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{% block body %}
+  <div class="add_buttons">
+
+    <div class="button-group">
+      <a href="{% url 'inv_man:display_product' %}" class="btn btn-primary btn-md btn-trim" role="button"> Products</a>
+      <a href="{% url 'inv_man:add_product' %}" class="btn btn-warning btn-md btn-pad" role="button"> +</a>
+
+      <a href="{% url 'inv_man:display_order' %}" class="btn btn-primary btn-md btn-trim" role="button"> Orders </a>
+      <a href="{% url 'inv_man:add_order' %}" class="btn btn-warning btn-md btn-pad" role="button"> + </a>
+
+      <a href="#" class="btn btn-primary btn-md btn-trim" role="button"> Staff</a>
+      <a href="#" class="btn btn-warning btn-md btn-pad" role="button"> +</a>
+
+    </div>
+
+  </div>
+
+  <table class="table table-hover table-sm table-responsive-sm table-striped table-bordered">
+    <thead>
+            <tr>
+              <th>order_number</th>
+              <th>product</th>
+              <th>client_name</th>
+              <th>phone</th>
+              <th>address</th>
+              <th>city</th>
+              <th>price</th>
+              <th>confirm</th>
+            </tr>
+    </thead>
+    <tbody>
+        {% for livr in display_delivery %}
+          {% if livr.city  == 'fes' %}
+            <tr>
+              <td>{{ livr.order_number }}</td>
+              <td>{{ livr.product }}</td>
+              <td>{{ livr.client_name }}</td>
+              <td>{{ livr.phone }}</td>
+              <td>{{ livr.address }}</td>
+              <td>{{ livr.city }}</td>
+              <td>{{ livr.price }}</td>
+              <td>{{ livr.confirm }}</td>
+            </tr>
+          {% endif %}
+        {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

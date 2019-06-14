@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{% block body %}
+
+  <div class="add_buttons">
+
+    <div class="button-group">
+      <a href="{% url 'inv_man:display_product' %}" class="btn btn-primary btn-md btn-trim" role="button"> Products</a>
+      <a href="{% url 'inv_man:add_product' %}" class="btn btn-warning btn-md btn-pad" role="button"> +</a>
+
+      <a href="{% url 'inv_man:display_order' %}" class="btn btn-primary btn-md btn-trim" role="button"> Orders </a>
+      <a href="{% url 'inv_man:add_order' %}" class="btn btn-warning btn-md btn-pad" role="button"> + </a>
+
+      <a href="#" class="btn btn-primary btn-md btn-trim" role="button"> Staff</a>
+      <a href="#" class="btn btn-warning btn-md btn-pad" role="button"> +</a>
+
+    </div>
+
+  </div>
+
+  <table class="table table-hover table-sm table-striped table-bordered">
+    <thead>
+      <tr>
+        <th>id</th>
+        <th>title</th>
+        <th>category</th>
+        <th>size</th>
+        <th>code</th>
+        <th>price</th>
+        <th>quantity</th>
+        <th>packed</th>
+        <th>seller</th>
+        <th>date</th>
+      </tr>
+    </thead>
+
+    <tbody>
+
+      {% for product in display_product %}
+
+      <tr>
+            <td>{{ product.id }}</td>
+            <td><a href="{% url 'inv_man:edit_product' product.id %}">{{ product.title }}</a></td>
+            <td>{{ product.category }}</td>
+            <td>{{ product.size }}</td>
+            <td>{{ product.code }}</td>
+            <td>{{ product.price }} $</td>
+            <td>{{ product.quantity }}</td>
+            <td>{{ product.packed }}</td>
+            <td>{{ product.seller }}</td>
+            <td>{{ product.date }}</td>
+          </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

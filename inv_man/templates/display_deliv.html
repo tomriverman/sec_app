@@ -1,0 +1,90 @@
+{% load bootstrap4 %}
+<html>
+  <head>
+    <title>Inventory</title>
+  </head>
+
+  {% load static %}
+  <link rel="stylesheet" type="text/css" href="{% static '/css/style.css' %}"/>
+  <link rel="stylesheet" type="text/css" href="{% static '/css/bootstrap.min.css' %}"/>
+
+  <body>
+
+
+    <nav class="navbar navbar-expand navbar-dark" style="background-color: #417690">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample02" aria-controls="navbarsExample02" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarsExample02">
+    {% if user.is_authenticated %}
+    <ul class="navbar-nav mr-auto">
+
+        <nav class="navbar navbar-expand navbar-dark" style="background-color: #417690">
+      <a class="navbar-brand" href="{% url 'inv_man:home' %}">Management System</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample02" aria-controls="navbarsExample02" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+     
+    </ul>
+
+    <ul class="nav navbar-nav navbar-right">
+      <li class="nav-item active navbar-nav navbar-right">
+          <a class="nav-link" href="{% url 'accounts:logout' %}">Log out</a>
+      </li>
+    </ul>
+
+    {% else %}
+        <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+      </li>
+    </ul>
+
+    <ul class="nav navbar-nav navbar-right">
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'accounts:login' %}">login<span class="sr-only">(current)</span></a>
+      </li>
+    </ul>
+    {% endif %}
+  </div>
+</nav>
+
+<br>
+
+<div class= container>
+ <h2>Orders For: {{user.city}}</h2>
+<br>
+
+  <table class="table table-hover table-sm table-striped table-bordered">
+    <thead>
+      <tr>
+        <th>product</th>
+        <th>client_name</th>
+        <th>phone</th>
+        <th>address</th>
+        <th>city</th>
+        <th>price</th>
+        <th>delivered</th>
+      </tr>
+    </thead>
+
+    <tbody>
+
+      {% for order in display_order %}
+        {% if order.city == user.city  and order.sent == True%}
+          <tr>
+            <td><a href="{% url 'inv_man:del_edit_order' order.id  %}">{{ order.product }}</td>
+            <td><a href="{% url 'inv_man:del_edit_order' order.id  %}">{{ order.client_name }}</td>
+            <td>{{ order.phone }}</td>
+            <td>{{ order.address }}</td>
+            <td>{{ order.city }}</td>
+            <td>{{ order.price }}</td>
+            <td><a href="{% url 'inv_man:del_edit_order' order.id  %}">{{ order.delivered }}</td>
+          </tr>
+        {% endif %}
+      {% endfor %}
+    </tbody>
+  </table>
+  </div>
+</body>
+</html>

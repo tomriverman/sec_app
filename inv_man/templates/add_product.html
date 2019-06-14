@@ -1,0 +1,181 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{% block body %}
+
+<form method="POST">
+
+    {% csrf_token %}
+    {% bootstrap_form prod_form %}
+    {% buttons %}
+        <button type="submit" class="btn btn-primary">Add Product</button>
+    {% endbuttons %}
+
+
+  </form>
+{% endblock %}
+{% comment %} <form method="POST">
+{% csrf_token %}
+
+  <div class="form-group">
+    <label for="id_titre">Titre</label>
+    <input type="text" name="titre" maxlength="200" class="form-control" placeholder="Titre" title="" required id="id_titre">
+  </div>
+
+<div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="id_category">Category</label>
+      <input type="text" name="category" maxlength="200" class="form-control"  placeholder="Category" title="" id="id_category">
+    </div>
+    <div class="form-group col-md-3">
+      <label for="id_taille">Taille</label>
+      <input type="text" name="taille" maxlength="200" class="form-control" placeholder="Taille" title="" id="id_taille">
+    </div>
+    <div class="form-group col-md-3">
+      <label for="id_code">Code</label>
+      <input type="text" name="code" maxlength="10" class="form-control" placeholder="Code" title="" id="id_code">
+    </div>
+  </div>
+
+<div class="form-row">
+    <div class="form-group col-md-3">
+      <label for="id_prix">Prix</label>
+      <input type="text" name="prix" maxlength="10" class="form-control" placeholder="Prix" title="" id="id_prix">
+    </div>
+
+    <div class="form-group col-md-3">
+      <label for="id_quantité">Quantité</label>
+      <input type="text" name="quantité" maxlength="10" class="form-control" placeholder="Quantité" title="" id="id_quantité">
+    </div>
+    <div class="form-group col-md-3">
+      <label for="id_vendeur">Vendeur</label>
+      <input type="text" name="vendeur" maxlength="200" class="form-control" placeholder="Vendeur" title="" id="id_vendeur">
+    </div>
+  </div>
+
+
+  <div class="form-group col-md-3">
+    <label for="id_date">Date</label>
+    <input type="text" name="date" class="form-control"  required id="id_date">
+  </div>
+
+  <div class="form-group">
+    <button type="submit" class="btn btn-primary">Ajouter produit</button>
+  </div>
+
+
+</form> {% endcomment %}
+
+{% comment %} <form action="" role="form" method="post">{% csrf_token %}
+    {% bootstrap_field form.titre placeholder='Name' %}
+    {% bootstrap_field form.quantité placeholder='Email' %}
+    {% bootstrap_field form.phone placeholder='Phone' %}
+    {% buttons submit='OK' reset="Cancel" %}
+    {% endbuttons %} {% endcomment %}
+
+
+    {% comment %} {% csrf_token %} 
+    {% bootstrap_form form %}
+    <div class="form-group col-md-6">
+      <label for="titre">titre</label>
+      <input type="text" class="form-control" id="fields.titre" placeholder="titre">
+    </div>
+    {% buttons %}
+        <button type="submit" class="btn btn-primary">Ajouter produit</button>
+    {% endbuttons %}
+
+    
+  </form>
+ 
+ <form action="" method="post" class="form">
+            <!--{% bootstrap_form form %}-->
+            <div class="col-sm-5 col-sm-offset-1">
+                {% for field in form %}
+                    {% if field.name != 'subject' and  field.name != 'message' %}
+                    {% bootstrap_field field %}
+                    {% endif %}
+                {% endfor %}
+            </div>
+            <div class="col-sm-5">
+                {% for field in form %}
+                    {% if field.name == 'subject' or  field.name == 'message' %}
+                    {% bootstrap_field field %}
+                    {% endif %}
+                {% endfor %}
+                {% buttons %}
+                    <button type="submit" class="btn btn-primary">
+                        {% bootstrap_icon "star" %} Submit
+                    </button>
+                {% endbuttons %}
+            </div>
+        </form>  {% endcomment %}
+
+{% comment %} <form>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="titre">titre</label>
+      <input type="text" class="form-control" id="titre" placeholder="titre">
+    </div>
+    <div class="form-group col-md-6">
+      <label for="inputPassword4">Password</label>
+      <input type="password" class="form-control" id="inputPassword4" placeholder="Password">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputAddress">Address</label>
+    <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+  </div>
+  <div class="form-group">
+    <label for="inputAddress2">Address 2</label>
+    <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="inputCity">City</label>
+      <input type="text" class="form-control" id="inputCity">
+    </div>
+    <div class="form-group col-md-4">
+      <label for="inputState">State</label>
+      <select id="inputState" class="form-control">
+        <option selected>Choose...</option>
+        <option>...</option>
+      </select>
+    </div>
+    <div class="form-group col-md-2">
+      <label for="inputZip">Zip</label>
+      <input type="text" class="form-control" id="inputZip">
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" id="gridCheck">
+      <label class="form-check-label" for="gridCheck">
+        Check me out
+      </label>
+    </div>
+  </div>
+  <button type="submit" class="btn btn-primary">Sign in</button>
+</form>
+
+<form>
+  <div class="form-row align-items-center">
+    <div class="col-auto my-1">
+      <label class="mr-sm-2 sr-only" for="inlineFormCustomSelect">Preference</label>
+      <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+        <option selected>Choose...</option>
+        <option value="1">One</option>
+        <option value="2">Two</option>
+        <option value="3">Three</option>
+      </select>
+    </div>
+    <div class="col-auto my-1">
+      <div class="custom-control custom-checkbox mr-sm-2">
+        <input type="checkbox" class="custom-control-input" id="customControlAutosizing">
+        <label class="custom-control-label" for="customControlAutosizing">Remember my preference</label>
+      </div>
+    </div>
+    <div class="col-auto my-1">
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+  </div>
+</form> {% endcomment %}
+
